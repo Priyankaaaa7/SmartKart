@@ -1,0 +1,150 @@
+{
+  "customerId": "user_001",
+  "name": "Priya Sharma",
+  "joined": "2025-06-20",
+  "pantry": [
+    {
+      "item": "Tomatoes",
+      "quantity": 4,
+      "unit": "pcs",
+      "purchaseDate": "2025-07-01",
+      "estimatedExpiry": "2025-07-06",
+      "used": 2,
+      "status": "active"
+    },
+    {
+      "item": "Rice",
+      "quantity": 2,
+      "unit": "kg",
+      "purchaseDate": "2025-06-25",
+      "estimatedExpiry": "2026-06-25",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Pasta",
+      "quantity": 500,
+      "unit": "grams",
+      "purchaseDate": "2025-06-28",
+      "estimatedExpiry": "2026-06-28",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Milk",
+      "quantity": 1,
+      "unit": "litre",
+      "purchaseDate": "2025-07-03",
+      "estimatedExpiry": "2025-07-06",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Lays Magic Masala",
+      "quantity": 250,
+      "unit": "grams",
+      "purchaseDate": "2025-06-29",
+      "estimatedExpiry": "2025-07-04",
+      "used": 0,
+      "status": "near_expiry"
+    },
+    {
+      "item": "Bread",
+      "quantity": 1,
+      "unit": "loaf",
+      "purchaseDate": "2025-07-10",
+      "estimatedExpiry": "2025-07-13",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "KitKat",
+      "quantity": 6,
+      "unit": "pcs",
+      "purchaseDate": "2025-06-30",
+      "estimatedExpiry": "2025-07-05",
+      "used": 3,
+      "status": "expiring_soon"
+    },
+    {
+      "item": "Spinach",
+      "quantity": 1,
+      "unit": "grams",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2025-07-18",
+      "used": 1,
+      "status": "used"
+    },
+    {
+      "item": "Samsung 55\" 4K TV",
+      "quantity": 1,
+      "unit": "pcs",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2028-07-13",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Apple iPad 10th Gen",
+      "quantity": 1,
+      "unit": "pcs",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2028-07-13",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "HP Laptop 15.6\"",
+      "quantity": 1,
+      "unit": "pcs",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2028-07-13",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Rice",
+      "quantity": 1,
+      "unit": "kg",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2026-07-14",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Tomatoes",
+      "quantity": 1,
+      "unit": "pcs",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2025-07-19",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Milk",
+      "quantity": 1,
+      "unit": "litre",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2025-07-18",
+      "used": 0,
+      "status": "active"
+    },
+    {
+      "item": "Bananas",
+      "quantity": 1,
+      "unit": "pcs",
+      "purchaseDate": "2025-07-14",
+      "estimatedExpiry": "2025-07-19",
+      "used": 0,
+      "status": "active"
+    }
+  ],
+  "savedFromExpiryCount": 49,
+  "badgesEarned": [],
+  "dietPreference": "vegetarian",
+  "allergies": [],
+  "budget": {
+    "monthly": 5000,
+    "currentSpent": 3675
+  }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SmartKart</title>
+    <style>
+      body {
+        background-color: #ffffff;
+        color: #1e3a8a;
+        font-family: Arial, sans-serif;
+        padding: 16px;
+      }
+
+      .logo {
+        display: block;
+        margin: 0 auto 16px;
+        max-width: 120px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #1e40af;
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        color: #2563eb;
+      }
+
+      .button-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background-color: #3b82f6;
+        border: none;
+        color: white;
+        font-size: 14px;
+        padding: 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .card:hover {
+        background-color: #2563eb;
+      }
+
+      .spoilt-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+
+      .spoilt-submenu.open {
+        max-height: 300px;
+      }
+
+      .spoilt-submenu button {
+        background-color: #93c5fd;
+        border: none;
+        color: #1e3a8a;
+        font-size: 14px;
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 10px;
+        width: 100%;
+      }
+
+      .spoilt-submenu button:hover {
+        background-color: #60a5fa;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="SmartKart_logo.jpg" alt="SmartKart Logo" class="logo" />
+    <h2>Welcome to SmartKart!</h2>
+    <p class="subtitle">Shop smart. Save big. Stay fresh.</p>
+
+    <div class="button-grid">
+      <button class="card" id="budgetBtn">💰<br />Budget Buddy</button>
+      <button class="card" id="spoiltBtn">⏳<br />Spoilt Guard</button>
+      <button class="card" id="suggestBtn">🤖<br />Smart Suggestions</button>
+      <button class="card" id="insightBtn">📊<br />Savings Summary</button>
+    </div>
+
+    <div class="spoilt-submenu" id="spoiltSubmenu">
+      <button id="expiryBtn">📅 Expiry Tracker</button>
+      <button id="cookBtn">🍳 What to Cook</button>
+      <button id="badgesBtn">🏅 Badges</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("budgetBtn").addEventListener("click", () => {
+          window.open("http://127.0.0.1:5000/budget");
+        });
+
+        document.getElementById("suggestBtn").addEventListener("click", () => {
+          window.open("http://127.0.0.1:5000/mock-store");
+        });
+
+        document.getElementById("insightBtn").addEventListener("click", () => {
+          window.open("http://127.0.0.1:5000/summary");
+        });
+
+        document.getElementById("spoiltBtn").addEventListener("click", () => {
+          document.getElementById("spoiltSubmenu").classList.toggle("open");
+        });
+
+        document.getElementById("expiryBtn").addEventListener("click", () => {
+          window.open("http://127.0.0.1:5000/expiry");
+        });
+
+        document.getElementById("cookBtn").addEventListener("click", () => {
+          window.open("http://127.0.0.1:5000/recipes");
+        });
+
+        document.getElementById("badgesBtn").addEventListener("click", () => {
+          window.open("http://127.0.0.1:5000/badges");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mock Grocery | SmartKart</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #fefcea, #f1da36);
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #ff6f61;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.2rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 30px;
+      }
+      .item {
+        background-color: white;
+        padding: 16px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s;
+      }
+      .item:hover {
+        transform: translateY(-5px);
+      }
+      .item h3 {
+        margin: 10px 0 5px;
+        font-size: 1.1rem;
+        color: #333;
+      }
+      .item p {
+        margin: 4px 0;
+        font-size: 0.95rem;
+      }
+      .item button {
+        margin-top: 10px;
+        padding: 8px 14px;
+        background-color: #27ae60;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .item button:hover {
+        background-color: #219150;
+      }
+      .item button:disabled {
+        background-color: #aaa;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🛒 Mock Grocery by SmartKart</h1>
+      <p>Your wallet-friendly shopping assistant</p>
+    </header>
+
+    <div class="grid" id="itemGrid"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const items = [
+          { name: "Milk", price: 65 },
+          { name: "Eggs", price: 75 },
+          { name: "Tomatoes", price: 40 },
+          { name: "Bread", price: 45 },
+          { name: "Rice", price: 90 },
+          { name: "Spinach", price: 30 },
+          { name: "Bananas", price: 50 },
+          { name: "Cheese", price: 150 },
+          { name: "Chicken", price: 240 },
+          { name: "Butter", price: 80 },
+        ];
+
+        const START_BUDGET = 5000;
+
+        const storedCart = JSON.parse(
+          localStorage.getItem("smartkart-cart-budget") || "[]"
+        );
+        let remainingBudget =
+          START_BUDGET - storedCart.reduce((acc, item) => acc + item.price, 0);
+
+        function updateStorage(cart) {
+          localStorage.setItem("smartkart-cart-budget", JSON.stringify(cart));
+        }
+
+        function addToCustomerData(item) {
+          fetch("/update-budget", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(item),
+          })
+            .then((res) => res.json())
+            .then((data) => console.log("Saved to customerData.json:", data));
+        }
+
+        function renderItems() {
+          const grid = document.getElementById("itemGrid");
+          grid.innerHTML = "";
+          const cart = JSON.parse(
+            localStorage.getItem("smartkart-cart-budget") || "[]"
+          );
+
+          items.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "item";
+            card.innerHTML = `
+              <h3>${item.name}</h3>
+              <p>Price: ₹${item.price}</p>
+              <button ${
+                item.price > remainingBudget ? "disabled" : ""
+              }>Add</button>
+            `;
+
+            const button = card.querySelector("button");
+            button.addEventListener("click", () => {
+              cart.push(item);
+              remainingBudget -= item.price;
+              updateStorage(cart);
+              addToCustomerData(item);
+              alert(`${item.name} added. ₹${remainingBudget} left.`);
+              renderItems();
+            });
+
+            grid.appendChild(card);
+          });
+
+          if (remainingBudget <= 0) {
+            alert("⚠️ Budget exhausted! You've hit your limit.");
+          }
+        }
+
+        renderItems();
+      });
+    </script>
+  </body>
+</html>

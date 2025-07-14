@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartKart Grocery + Electronics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-black">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">SmartKart</h1>
+      <input
+        type="text"
+        placeholder="Search"
+        class="px-3 py-1 text-black rounded"
+      />
+    </nav>
+
+    <!-- Hero -->
+    <header class="bg-yellow-300 text-center p-4 text-xl font-semibold">
+      Shop groceries & gadgets — Smart and Affordable!
+    </header>
+
+    <!-- Product Grid -->
+    <main
+      class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      id="product-list"
+    ></main>
+
+    <!-- Save Button -->
+    <div class="text-center mt-6">
+      <button
+        onclick="saveCustomerData()"
+        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+      >
+        Save CustomerData.json
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-10">
+      &copy; 2025 SmartKart Clone. Demo only.
+    </footer>
+
+    <script>
+      const today = new Date().toISOString().split("T")[0];
+
+      const items = [
+        { name: 'Samsung 55" 4K TV', category: "electronics", price: 398 },
+        { name: "Apple iPad 10th Gen", category: "electronics", price: 329 },
+        { name: 'HP Laptop 15.6"', category: "electronics", price: 459 },
+        {
+          name: "Milk",
+          category: "grocery",
+          price: 65,
+          unit: "litre",
+          expiryDays: 4,
+        },
+        {
+          name: "Rice",
+          category: "grocery",
+          price: 90,
+          unit: "kg",
+          expiryDays: 365,
+        },
+        {
+          name: "Tomatoes",
+          category: "grocery",
+          price: 40,
+          unit: "pcs",
+          expiryDays: 5,
+        },
+        {
+          name: "Bread",
+          category: "grocery",
+          price: 45,
+          unit: "loaf",
+          expiryDays: 6,
+        },
+        {
+          name: "Spinach",
+          category: "grocery",
+          price: 30,
+          unit: "grams",
+          expiryDays: 4,
+        },
+        {
+          name: "Bananas",
+          category: "grocery",
+          price: 50,
+          unit: "pcs",
+          expiryDays: 5,
+        },
+      ];
+
+      const customerData = {
+        customerId: "user_001",
+        name: "Priya Sharma",
+        joined: "2025-06-20",
+        pantry: [],
+        savedFromExpiryCount: 49,
+        badgesEarned: [],
+        dietPreference: "vegetarian",
+        allergies: [],
+        budget: {
+          monthly: 5000,
+          currentSpent: 3675,
+        },
+      };
+
+      function estimateExpiry(days) {
+        const date = new Date();
+        date.setDate(date.getDate() + days);
+        return date.toISOString().split("T")[0];
+      }
+
+      function renderProducts() {
+        const container = document.getElementById("product-list");
+        items.forEach((product) => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-2xl shadow p-4";
+
+          card.innerHTML = `
+          <img src="https://via.placeholder.com/300x200?text=${encodeURIComponent(
+            product.name
+          )}" 
+               class="w-full h-40 object-cover rounded" alt="${product.name}" />
+          <h2 class="mt-2 text-lg font-bold">${product.name}</h2>
+          <p class="text-blue-600 font-semibold">₹${product.price}</p>
+          <button onclick='selectProduct(${JSON.stringify(product)})' 
+                  class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Select
+          </button>
+        `;
+          container.appendChild(card);
+        });
+      }
+
+      function selectProduct(product) {
+        const pantryItem = {
+          item: product.name,
+          quantity: 1,
+          unit: product.unit || "pcs",
+          purchaseDate: today,
+          estimatedExpiry: product.expiryDays
+            ? estimateExpiry(product.expiryDays)
+            : "2028-07-13",
+          used: 0,
+          status: "active",
+        };
+
+        const alreadyAdded = customerData.pantry.find(
+          (p) => p.item === pantryItem.item
+        );
+        if (!alreadyAdded) {
+          customerData.pantry.push(pantryItem);
+          alert(`${pantryItem.item} added to pantry.`);
+        } else {
+          alert(`${pantryItem.item} is already added.`);
+        }
+      }
+
+      function saveCustomerData() {
+        const blob = new Blob([JSON.stringify(customerData, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "CustomerData.json";
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+
+      renderProducts();
+    </script>
+  </body>
+</html>
