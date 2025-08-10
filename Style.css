@@ -1,96 +1,133 @@
+/* Base styles */
 body {
-  margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(to bottom right, #e6f0ff, #fefefe);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background-color: #ffe4ec; /* Light pink */
+  color: #4a154b; /* Plum */
+  padding: 20px;
+  margin: 0;
+  width: 260px;
 }
 
-.spoilt-page {
-  background: none;
-  padding: 30px;
+/* Heading */
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #d63384;
+}
+
+/* Buttons */
+button {
+  background: #ff69b4; /* Hot pink */
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #ff3e9e; /* Darker pink on hover */
+}
+
+/* Submenu buttons */
+.submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.submenu button {
+  background-color: #ff85c1;
+  font-size: 14px;
+}
+
+/* Hidden class for JS toggling */
+.hidden {
+  display: none;
+}
+
+/* Card-style buttons (for index.html grid) */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .card {
   background-color: white;
-  padding: 25px 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
+  padding: 16px;
+  border: 2px solid #ff69b4;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
   text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.card h1 {
-  margin-bottom: 20px;
+.card:hover {
+  transform: scale(1.05);
+  background-color: #ffd1e8;
+}
+
+/* Dropdown (for recipe page or other) */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f0f8ff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
   color: #333;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.dropdown-content a:hover {
+  background-color: #e8e8ff;
 }
 
-ul li {
-  background: #f9f9f9;
-  margin: 8px 0;
-  padding: 12px 15px;
+/* Recipe Card */
+.recipe-card {
+  border: 1px solid #ddd;
   border-radius: 10px;
-  transition: background 0.3s ease;
+  padding: 15px;
+  margin: 15px auto;
+  max-width: 400px;
+  background-color: #fffbe6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-ul li:hover {
-  background: #e0ecff;
-}
-
-input[type="text"] {
-  width: 80%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
-}
-
-button {
-  background-color: #4a90e2;
-  color: white;
-  padding: 10px 20px;
+.recipe-card img {
+  max-width: 100%;
   border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s ease;
+  margin-bottom: 10px;
 }
 
-button:hover {
-  background-color: #357bd8;
-}
-
-.badge-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.badge {
-  padding: 15px 20px;
-  margin: 10px;
-  border-radius: 12px;
-  font-weight: bold;
-  width: 80%;
-  transition: all 0.3s;
-}
-
-.unlocked {
-  background: #d4f6d4;
-  color: #2b662b;
-  border: 2px solid #69c769;
-}
-
-.locked {
-  background: #f0f0f0;
-  color: #999;
-  border: 2px dashed #ccc;
+/* Logo (index.html) */
+.logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 20px;
 }
