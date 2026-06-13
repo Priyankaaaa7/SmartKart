@@ -1,106 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SmartKart</title>
-    <style>
-      body {
-        background-color: #f0f8ff; /* light blue background */
-        color: #1e3a8a;
-        font-family: Arial, sans-serif;
-        padding: 16px;
-        width: 300px;
-      }
+const BASE_URL = "https://thorough-charm-production-0fbe.up.railway.app";
 
-      .logo {
-        display: block;
-        margin: 0 auto 16px;
-        max-width: 120px;
-        border-radius: 8px;
-      }
+// Budget
+document.getElementById("budgetBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/budget` });
+});
 
-      h2 {
-        text-align: center;
-        color: #1e40af;
-      }
+// Pantry
+document.getElementById("pantryBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/pantry` });
+});
 
-      .subtitle {
-        text-align: center;
-        font-size: 1rem;
-        margin-bottom: 20px;
-        color: #2563eb;
-      }
+// Summary
+document.getElementById("insightBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/summary` });
+});
 
-      .button-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 12px;
-        margin-bottom: 10px;
-      }
+// Spoilt Guard dropdown toggle
+document.getElementById("spoiltBtn").addEventListener("click", () => {
+  const submenu = document.getElementById("spoiltSubmenu");
+  submenu.classList.toggle("open");
+});
 
-      .card {
-        background-color: #1e40af;
-        border: none;
-        color: white;
-        font-size: 14px;
-        padding: 12px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      }
+// Expiry Tracker
+document.getElementById("expiryBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/expiry` });
+});
 
-      .card:hover {
-        background-color: #3b82f6;
-      }
+// Recipes
+document.getElementById("cookBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/recipes` });
+});
 
-      .spoilt-submenu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out;
-      }
-
-      .spoilt-submenu.open {
-        max-height: 300px;
-      }
-
-      .spoilt-submenu button {
-        background-color: #dbeafe;
-        border: none;
-        color: #1e3a8a;
-        font-size: 14px;
-        padding: 8px;
-        margin: 5px 0;
-        border-radius: 10px;
-        width: 100%;
-        cursor: pointer;
-      }
-
-      .spoilt-submenu button:hover {
-        background-color: #bfdbfe;
-      }
-    </style>
-  </head>
-  <body>
-    <img src="SmartKart_logo.jpg" alt="SmartKart Logo" class="logo" />
-
-    <h2>Welcome to SmartKart!</h2>
-    <p class="subtitle">Shop smart. Save big. Stay fresh.</p>
-
-    <div class="button-grid">
-      <button class="card" id="budgetBtn">💰<br />Budget Buddy</button>
-      <button class="card" id="spoiltBtn">⏳<br />Spoilt Guard</button>
-      <button class="card" id="pantryBtn">📦<br />Virtual Pantry</button>
-      <button class="card" id="insightBtn">📊<br />Summary</button>
-    </div>
-
-    <div class="spoilt-submenu" id="spoiltSubmenu">
-      <button id="expiryBtn">📅 Expiry Tracker</button>
-      <button id="cookBtn">🍳 What to Cook</button>
-      <button id="badgesBtn">🏅 Badges</button>
-    </div>
-
-    <!-- External script to follow CSP rules -->
-    <script src="script.js"></script>
-  </body>
-</html>
+// Badges
+document.getElementById("badgesBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/badges` });
+});
