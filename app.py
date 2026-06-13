@@ -35,7 +35,7 @@ def mock_store():
 @app.route("/budget")
 def budget():
     data = load_customer_data()
-    return render_template("budget.html", budget=data["budget"])
+    return render_template("/budget", budget=data["budget"])
 
 # Update budget when user adds item from store
 @app.route("/update-budget", methods=["POST"])
@@ -66,7 +66,7 @@ def expiry_tracker():
 def recipe_suggestions():
     data = load_customer_data()
     recipes = suggest_live_recipes(data["pantry"])
-    return render_template("/recipes", recipes=recipes)
+    return render_template("recipes.html", recipes=recipes)
 
 # Virtual Pantry
 @app.route("/pantry")
