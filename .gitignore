@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+
+spoonacular_response.json
+
+.env

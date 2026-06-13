@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartKart</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Optional: App Logo -->
+      <img src="SmartKart_logo.jpg" alt="SmartKart Logo" class="logo" />
+
+      <h2>Welcome to SmartKart!</h2>
+      <p class="subtitle">Your smart shopping companion</p>
+
+      <!-- Button Grid -->
+      <div class="button-grid">
+        <button class="card" onclick="openPage('budget.html')">
+          💰<br />Budget Buddy
+        </button>
+
+        <div class="card submenu-container">
+          ⏳<br />Spoilt Guard
+          <div class="submenu">
+            <button onclick="location.href='/expiry'">Expiry Tracker</button>
+            <button onclick="location.href='/recipes'">What to Cook</button>
+            <button onclick="location.href='/badges'">Badges</button>
+          </div>
+        </div>
+
+        <button class="card" onclick="openPage('ai.html')">
+          🤖<br />Smart Suggestions
+        </button>
+        <button class="card" onclick="openPage('summary.html')">
+          📊<br />Savings Summary
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function openPage(page) {
+        window.location.href = page;
+      }
+    </script>
+  </body>
+</html>

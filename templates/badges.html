@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartKart | Badges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #f0f8ff;
+        color: #1e3a8a;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 2rem;
+      }
+
+      .badge-card {
+        background-color: #ffffff;
+        border: 2px solid #d1d5db;
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .badge-card:hover {
+        transform: scale(1.03);
+        border-color: #3b82f6;
+      }
+
+      .badge-text {
+        color: #065f46;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="text-4xl text-center font-bold text-blue-700 mb-4">
+      🏅 Your Achievements
+    </h1>
+    <p class="text-center text-lg mb-8">
+      <strong class="text-blue-800">Total Items Saved from Expiry:</strong>
+      <span class="font-semibold">{{ count }}</span>
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% if badges %} {% for badge in badges %}
+      <div class="badge-card">
+        <p class="badge-text">{{ badge }}</p>
+      </div>
+      {% endfor %} {% else %}
+      <p class="text-center text-green-600 col-span-full text-lg">
+        🚀 No badges yet, but you're on the right path! Keep saving food!
+      </p>
+      {% endif %}
+    </div>
+  </body>
+</html>

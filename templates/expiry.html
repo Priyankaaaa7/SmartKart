@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SmartKart | Expiry Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .danger {
+        color: #dc2626;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white p-4 text-center text-xl font-bold">
+      ⏳ Items Expiring Soon
+    </nav>
+
+    <main class="p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3" id="expiry-list">
+      {% if items %} {% for item in items %}
+      <div class="bg-white p-4 rounded-lg shadow flex flex-col justify-between">
+        <div>
+          <h2 class="text-lg font-semibold mb-1">{{ item.item }}</h2>
+          <p>Quantity: {{ item.quantity }} {{ item.unit }}</p>
+          <p>Purchase Date: {{ item.purchaseDate }}</p>
+          <p>Expiry Date: {{ item.estimatedExpiry }}</p>
+          <p class="danger">⏳ {{ item.daysLeft }} day(s) left</p>
+        </div>
+        <button
+          class="mt-4 bg-green-600 hover:bg-green-700 text-white py-2 rounded"
+          onclick="markAsUsed('{{ item.item }}')"
+        >
+          ✅ Cross Off
+        </button>
+      </div>
+      {% endfor %} {% else %}
+      <p class="text-center col-span-full text-lg text-green-600">
+        🎉 Nothing expiring soon! You're managing your pantry well.
+      </p>
+      {% endif %}
+    </main>
+
+    <script>
+      function markAsUsed(itemName) {
+        fetch("/mark-used", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ item: itemName }),
+        }).then((response) => {
+          if (response.ok) {
+            alert(`${itemName} marked as used.`);
+            location.reload(); // Refresh to update UI
+          } else {
+            alert("❌ Failed to mark as used.");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
