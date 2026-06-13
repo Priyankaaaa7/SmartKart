@@ -1,29 +1,37 @@
-// Open Flask routes in tabs
+const BASE_URL = "https://thorough-charm-production-0fbe.up.railway.app";
+
+// Budget
 document.getElementById("budgetBtn").addEventListener("click", () => {
-  chrome.tabs.create({ url: "http://127.0.0.1:5000/budget" });
+  chrome.tabs.create({ url: `${BASE_URL}/budget` });
 });
 
-document.getElementById("suggestBtn").addEventListener("click", () => {
-  chrome.tabs.create({ url: "http://127.0.0.1:5000/suggestions" });
+// Pantry
+document.getElementById("pantryBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/pantry` });
 });
 
+// Summary
 document.getElementById("insightBtn").addEventListener("click", () => {
-  chrome.tabs.create({ url: "http://127.0.0.1:5000/insights" });
+  chrome.tabs.create({ url: `${BASE_URL}/summary` });
 });
 
 // Spoilt Guard dropdown toggle
 document.getElementById("spoiltBtn").addEventListener("click", () => {
   const submenu = document.getElementById("spoiltSubmenu");
-  submenu.classList.toggle("hidden");
+  submenu.classList.toggle("open");
 });
 
-// Spoilt Guard submenu actions
+// Expiry Tracker
 document.getElementById("expiryBtn").addEventListener("click", () => {
-  chrome.tabs.create({ url: "http://127.0.0.1:5000/expiry" });
+  chrome.tabs.create({ url: `${BASE_URL}/expiry` });
 });
+
+// Recipes
 document.getElementById("cookBtn").addEventListener("click", () => {
-  chrome.tabs.create({ url: "http://127.0.0.1:5000/recipes" });
+  chrome.tabs.create({ url: `${BASE_URL}/recipes` });
 });
+
+// Badges
 document.getElementById("badgesBtn").addEventListener("click", () => {
-  chrome.tabs.create({ url: "http://127.0.0.1:5000/badges" });
+  chrome.tabs.create({ url: `${BASE_URL}/badges` });
 });
