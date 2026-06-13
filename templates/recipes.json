@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Tomato Spinach Pasta",
+    "ingredients": ["Tomatoes", "Spinach", "Bread"],
+    "time": "20 mins"
+  },
+  {
+    "name": "Banana Milkshake",
+    "ingredients": ["Milk", "Bananas"],
+    "time": "10 mins"
+  },
+  {
+    "name": "Classic French Toast",
+    "ingredients": ["Bread", "Milk", "Bananas"],
+    "time": "15 mins"
+  }
+]
