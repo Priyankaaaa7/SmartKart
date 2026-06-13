@@ -66,7 +66,7 @@ def expiry_tracker():
 def recipe_suggestions():
     data = load_customer_data()
     recipes = suggest_live_recipes(data["pantry"])
-    return render_template("recipes.html", recipes=recipes)
+    return render_template("/recipes", recipes=recipes)
 
 # Virtual Pantry
 @app.route("/pantry")
