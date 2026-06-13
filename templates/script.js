@@ -1,27 +1,37 @@
+const BASE_URL = "https://thorough-charm-production-0fbe.up.railway.app";
+
+// Budget
 document.getElementById("budgetBtn").addEventListener("click", () => {
-  window.open("http://127.0.0.1:5000/budget", "_blank");
+  chrome.tabs.create({ url: `${BASE_URL}/budget` });
 });
 
+// Pantry
 document.getElementById("pantryBtn").addEventListener("click", () => {
-  window.open("http://127.0.0.1:5000/pantry", "_blank");
+  chrome.tabs.create({ url: `${BASE_URL}/pantry` });
 });
 
+// Summary
 document.getElementById("insightBtn").addEventListener("click", () => {
-  window.open("http://127.0.0.1:5000/summary", "_blank");
+  chrome.tabs.create({ url: `${BASE_URL}/summary` });
 });
 
+// Spoilt Guard dropdown toggle
 document.getElementById("spoiltBtn").addEventListener("click", () => {
-  document.getElementById("spoiltSubmenu").classList.toggle("open");
+  const submenu = document.getElementById("spoiltSubmenu");
+  submenu.classList.toggle("open");
 });
 
+// Expiry Tracker
 document.getElementById("expiryBtn").addEventListener("click", () => {
-  window.open("http://127.0.0.1:5000/expiry", "_blank");
+  chrome.tabs.create({ url: `${BASE_URL}/expiry` });
 });
 
+// Recipes
 document.getElementById("cookBtn").addEventListener("click", () => {
-  window.open("http://127.0.0.1:5000/recipes", "_blank");
+  chrome.tabs.create({ url: `${BASE_URL}/recipes` });
 });
 
+// Badges
 document.getElementById("badgesBtn").addEventListener("click", () => {
-  window.open("http://127.0.0.1:5000/badges", "_blank");
+  chrome.tabs.create({ url: `${BASE_URL}/badges` });
 });
