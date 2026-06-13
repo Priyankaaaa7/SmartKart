@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SmartKart | Virtual Pantry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .status-pill {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border-radius: 9999px;
+        display: inline-block;
+      }
+
+      .status-active {
+        background-color: #d1fae5;
+        color: #065f46;
+      }
+
+      .status-near_expiry {
+        background-color: #fef9c3;
+        color: #92400e;
+      }
+
+      .status-expiring_soon {
+        background-color: #fee2e2;
+        color: #991b1b;
+      }
+
+      .status-used {
+        background-color: #e5e7eb;
+        color: #6b7280;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-black min-h-screen">
+    <!-- Navbar -->
+    <nav
+      class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md"
+    >
+      <h1 class="text-2xl font-bold">SmartKart</h1>
+      <input
+        type="text"
+        placeholder="Search pantry..."
+        class="px-3 py-1 rounded text-black"
+        id="searchInput"
+        oninput="filterPantry()"
+      />
+    </nav>
+
+    <!-- Header -->
+    <header
+      class="bg-yellow-300 text-center p-4 text-xl font-semibold shadow-inner"
+    >
+      🧺 Your SmartKart Virtual Pantry
+    </header>
+
+    <!-- Pantry Grid -->
+    <main
+      class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      id="pantry-list"
+    >
+      {% for item in pantry %}
+      <div
+        class="bg-white rounded-xl shadow-lg p-5 pantry-item transition hover:scale-105"
+      >
+        <h2 class="text-lg font-bold text-blue-800 mb-2">{{ item.item }}</h2>
+        <p><strong>Quantity:</strong> {{ item.quantity }} {{ item.unit }}</p>
+        <p><strong>Purchased:</strong> {{ item.purchaseDate }}</p>
+        <p><strong>Expires:</strong> {{ item.estimatedExpiry }}</p>
+        <p>
+          <strong>Status:</strong>
+          <span class="status-pill status-{{ item.status }}"
+            >{{ item.status.replace("_", " ") }}</span
+          >
+        </p>
+        <p><strong>Used:</strong> {{ item.used }}</p>
+      </div>
+      {% endfor %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-10">
+      &copy; 2025 SmartKart. Virtual Pantry.
+    </footer>
+
+    <!-- Filter JS -->
+    <script>
+      function filterPantry() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const items = document.querySelectorAll(".pantry-item");
+
+        items.forEach((item) => {
+          const name = item.querySelector("h2").textContent.toLowerCase();
+          item.style.display = name.includes(query) ? "block" : "none";
+        });
+      }
+    </script>
+  </body>
+</html>

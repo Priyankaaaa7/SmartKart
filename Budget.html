@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SmartKart | Budget Buddy</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        padding: 20px;
+        background-color: #010205;
+        color: #2c3e50;
+      }
+
+      h2 {
+        text-align: center;
+        color: #0062cc;
+      }
+
+      .budget-box {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #e9f3ff;
+        border-radius: 10px;
+        max-width: 400px;
+        box-shadow: 0 0 10px rgba(0, 98, 204, 0.1);
+      }
+
+      .budget-box p {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      .budget-box .status {
+        font-weight: bold;
+        color: #2d9cdb;
+      }
+
+      .warning {
+        color: #d63031;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>💰 Budget Buddy</h2>
+    <div class="budget-box">
+      <p>Total Budget: ₹{{ budget.monthly }}</p>
+      <p>Spent So Far: ₹{{ budget.currentSpent }}</p>
+      <p class="status">
+        Remaining: ₹{{ budget.monthly - budget.currentSpent }}
+      </p>
+
+      {% if budget.currentSpent >= budget.monthly %}
+      <p class="warning">🚨 You've hit your budget limit!</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

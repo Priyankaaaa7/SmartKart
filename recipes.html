@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SmartKart | What to Cook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white p-4 text-center text-xl font-bold">
+      🍳 Smart Suggestions
+    </nav>
+
+    <!-- Intro -->
+    <header
+      class="bg-blue-100 text-center py-3 text-lg font-medium text-blue-800"
+    >
+      Recipes based on your current pantry items
+    </header>
+
+    <main class="p-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+      {% if recipes %} {% for r in recipes %}
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col">
+        <img
+          src="{{ r.image }}"
+          alt="{{ r.name }}"
+          class="w-full h-40 object-cover rounded mb-2"
+        />
+        <h2 class="text-lg font-bold text-blue-700 mb-1">{{ r.name }}</h2>
+        <p class="text-sm text-gray-700">
+          ✅ Ingredients you have: <strong>{{ r.usedIngredients }}</strong
+          ><br />
+          ❌ Missing ingredients: <strong>{{ r.missedIngredients }}</strong>
+        </p>
+
+        {% if r.missedIngredientNames %}
+        <p class="text-sm mt-2 text-red-600">
+          Missing: {{ r.missedIngredientNames | join(", ") }}
+        </p>
+        {% endif %}
+      </div>
+      {% endfor %} {% else %}
+      <p class="text-center text-blue-600 text-lg col-span-full">
+        🤷‍♀️ No recipes found with your current pantry items.
+      </p>
+      {% endif %}
+    </main>
+
+    <footer class="bg-gray-100 text-center text-sm text-gray-600 py-4">
+      &copy; 2025 SmartKart | AI-Powered Suggestions
+    </footer>
+  </body>
+</html>

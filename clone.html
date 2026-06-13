@@ -153,13 +153,13 @@
         name: "Priya Sharma",
         joined: "2025-06-20",
         pantry: [],
-        savedFromExpiryCount: 50,
+        savedFromExpiryCount: 49,
         badgesEarned: [],
         dietPreference: "vegetarian",
         allergies: [],
         budget: {
           monthly: 5000,
-          currentSpent: 4975,
+          currentSpent: 3675,
         },
       };
 
@@ -178,11 +178,11 @@
           card.innerHTML = `
           <img src="https://via.placeholder.com/300x200?text=${encodeURIComponent(
             product.name
-          )}"
+          )}" 
                class="w-full h-40 object-cover rounded" alt="${product.name}" />
           <h2 class="mt-2 text-lg font-bold">${product.name}</h2>
           <p class="text-blue-600 font-semibold">₹${product.price}</p>
-          <button onclick='selectProduct(${JSON.stringify(product)})'
+          <button onclick='selectProduct(${JSON.stringify(product)})' 
                   class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             Select
           </button>
@@ -208,8 +208,29 @@
           (p) => p.item === pantryItem.item
         );
         if (!alreadyAdded) {
+          // Add to pantry
           customerData.pantry.push(pantryItem);
-          alert(`${pantryItem.item} added to pantry.`);
+
+          // 🔥 Update budget in Flask backend
+          fetch("http://127.0.0.1:5000/update-budget", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ price: product.price }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.status === "success") {
+                alert(`${pantryItem.item} added. New spent: ₹${data.newSpent}`);
+              } else {
+                alert("❌ Error updating budget.");
+              }
+            })
+            .catch((err) => {
+              console.error("Fetch error:", err);
+              alert("⚠️ Server error.");
+            });
         } else {
           alert(`${pantryItem.item} is already added.`);
         }
@@ -222,7 +243,6 @@
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        LINK.name = "BUY";
         link.download = "CustomerData.json";
         link.click();
         URL.revokeObjectURL(url);
