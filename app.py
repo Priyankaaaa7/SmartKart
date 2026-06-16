@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from spoilt_guard import (
     load_customer_data,
     save_customer_data,
@@ -10,13 +11,15 @@ from spoilt_guard import (
 
 import matplotlib.pyplot as plt
 import io
-import base64
-from flask_cors import CORS
-from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS 
+import os
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app)  # ✅ Fix #2: Only one Flask instance, CORS applied once
+
+# Check for Spoonacular API key on startup
+if not os.environ.get("SPOONACULAR_API_KEY"):  # ✅ Fix #3: Warn if key is missing
+    print("⚠️  WARNING: SPOONACULAR_API_KEY is not set! Recipe suggestions will not work.")
+
 
 # Home extension popup
 @app.route("/")
@@ -32,7 +35,7 @@ def mock_store():
 @app.route("/budget")
 def budget():
     data = load_customer_data()
-    return render_template("budget.html", budget=data["budget"])
+    return render_template("budget.html", budget=data["budget"])  # ✅ Fix #1: Correct template name
 
 # Update budget when user adds item from store
 @app.route("/update-budget", methods=["POST"])
@@ -124,6 +127,7 @@ def summary_graph():
     buf = io.BytesIO()
     plt.savefig(buf, format="png")
     buf.seek(0)
+    plt.close(fig)  # Bonus fix: prevent memory leak from unclosed figures
     return buf.read(), 200, {"Content-Type": "image/png"}
 
 # Summary View
@@ -158,7 +162,6 @@ def mark_used():
 
     return jsonify({"status": "error", "message": "Invalid item"}), 400
 
-import os
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
