@@ -1,7 +1,13 @@
+console.log("SMARTKART JS LOADED");
+
 const BASE_URL = "https://thorough-charm-production-0fbe.up.railway.app";
 
 // Budget
 document.getElementById("budgetBtn").addEventListener("click", () => {
+  chrome.tabs.create({ url: `${BASE_URL}/budget` });
+});
+document.getElementById("budgetBtn").addEventListener("click", () => {
+  console.log("Budget clicked");
   chrome.tabs.create({ url: `${BASE_URL}/budget` });
 });
 
